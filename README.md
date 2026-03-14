@@ -60,12 +60,8 @@ python hw1.py
 </p>
 
 ### Sample Video
-<p align="center">
-  <video width="400" controls>
-    <source src="recorded_20260314_215839.mp4" type="video/mp4">
-    Your browser does not support the video tag. <a href="recorded_20260314_215839.mp4">Download video</a>
-  </video>
-</p>
+Click to view or download:
+**[📹 Watch Sample Video](recorded_20260314_215839.mp4)** (MP4, 2.89 MB)
 
 ---
 
