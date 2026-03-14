@@ -24,7 +24,7 @@ A lightweight, easy-to-use video recorder application built with Python and Open
 ### Core Features (Required)
 - **Real-time Camera Display**: View live webcam stream using OpenCV's `cv.VideoCapture`
 - **Mode Toggle**: Switch between Preview and Record modes
-- **Video Recording**: Save webcam stream as MP4 video files with automatic timestamped filenames
+- **Video Recording**: Save webcam stream as video files with automatic timestamped filenames
 - **Recording Indicator**: Visual red circle indicator displayed during recording
 - **Customizable Settings**: Adjust FPS and select different video codecs (MP4V, XVID, MJPG) on the fly
 - **Keyboard Controls**: 
@@ -37,7 +37,7 @@ A lightweight, easy-to-use video recorder application built with Python and Open
 ### Additional Features
 - **Horizontal Flip**: Press `F` to flip the video horizontally (useful for mirror-like preview)
 - **Automatic Naming**: Video files are automatically named with timestamps (format: `recorded_YYYYMMDD_HHMMSS.mp4`)
-- **Codec Configuration**: Uses MP4v codec for broad compatibility
+- **Codec Configuration**: The codec can be changed during preview mode.
 - **Status Display**: On-screen display shows current mode and flip status
 
 ## Requirements
@@ -65,7 +65,7 @@ cd webcam-recorder
 Run the application:
 
 ```bash
-python hw1.py
+python main.py
 ```
 
 ### Keyboard Controls
@@ -99,15 +99,6 @@ Recorded video files are saved in the same directory with timestamped filenames:
 - **Resolution**: Matches your camera's native resolution
 - **Format**: MP4 container
 
-## Future Enhancements
-
-Potential improvements for future versions:
-- Adjustable FPS and codec selection
-- Video effects (grayscale, blur, edge detection)
-- Brightness and contrast adjustment
-- Screen capture option
-- Video format selection (AVI, MOV, etc.)
-- Resolution adjustment UI
 
 ## Troubleshooting
 
@@ -130,9 +121,9 @@ Potential improvements for future versions:
 
 ```
 webcam-recorder/
-├── hw1.py          # Main application
+├── main.py          # Main application
 ├── README.md       # This file
-└── recorded_*.mp4  # Generated video files
+└── recorded_YYYYMMDD_HHMMSS.mp4  # Generated video files
 ```
 
 ## License
