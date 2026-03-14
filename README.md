@@ -2,6 +2,26 @@
 
 A lightweight, easy-to-use video recorder application built with Python and OpenCV. Capture your webcam stream in real-time with preview and recording modes.
 
+
+## Demo & Examples
+
+### Application Interface
+
+![Video Recorder Application](vid%20recorder%20img.png)
+
+### Sample Recording
+
+[Download sample video: recorded_20260314_215839.mp4](recorded_20260314_215839.mp4)
+
+Or view with HTML5 player:
+
+```html
+<video width="320" height="240" controls>
+  <source src="recorded_20260314_215839.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+```
+
 ## Features
 
 ### Core Features (Required)
@@ -68,6 +88,7 @@ python hw1.py
 Recorded video files are saved in the same directory with timestamped filenames:
 - Example: `recorded_20260314_143022.mp4`
 
+
 ## Technical Specifications
 
 - **Video Codec**: MP4v (compatible with most media players)
@@ -75,15 +96,7 @@ Recorded video files are saved in the same directory with timestamped filenames:
 - **Resolution**: Matches your camera's native resolution
 - **Format**: MP4 container
 
-## Future Enhancements
 
-Potential improvements for future versions:
-- Adjustable FPS and codec selection
-- Video effects (grayscale, blur, edge detection)
-- Brightness and contrast adjustment
-- Screen capture option
-- Video format selection (AVI, MOV, etc.)
-- Resolution adjustment UI
 
 ## Troubleshooting
 
@@ -116,9 +129,5 @@ camrec/
 This project is open source and available for educational purposes.
 
 ## Author
-
+Laura Morales
 Created as a Computer Vision course assignment.
-
----
-
-**Note**: First time setup may require OpenCV to compile on your system. This is normal and typically takes a few moments.
