@@ -38,7 +38,7 @@ A lightweight, easy-to-use video recorder application built with Python and Open
 - **Horizontal Flip**: Press `F` to flip the video horizontally (useful for mirror-like preview)
 - **Automatic Naming**: Video files are automatically named with timestamps (format: `recorded_YYYYMMDD_HHMMSS.mp4`)
 - **Codec Configuration**: The codec can be changed during preview mode.
-- **Status Display**: On-screen display shows current mode and flip status
+- **Status Display**: On-screen display shows current mode, flip status, FPS, and codec
 
 ## Requirements
 
@@ -97,7 +97,7 @@ Recorded video files are saved in the same directory with timestamped filenames:
 - **Video Codecs**: Supports MP4v, XVID, and MJPG
 - **Adjustable FPS**: Range from 1 to 60 FPS (Default: 20.0)
 - **Resolution**: Matches your camera's native resolution
-- **Format**: MP4 container
+- **Output Filename**: Timestamped video files saved in the project directory
 
 
 ## Troubleshooting
@@ -123,7 +123,7 @@ Recorded video files are saved in the same directory with timestamped filenames:
 webcam-recorder/
 ├── main.py          # Main application
 ├── README.md       # This file
-└── recorded_YYYYMMDD_HHMMSS.mp4  # Generated video files
+└── recorded_<timestamp>.mp4  # Generated video files
 ```
 
 ## License
