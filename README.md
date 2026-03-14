@@ -11,9 +11,11 @@ A lightweight, easy-to-use video recorder application built with Python and Open
   <img src="vid%20recorder%20img.png" alt="Video Recorder Application" width="400">
 </p>
 
-### Sample Video
-Click to view or download:
-**[📹 Watch Sample Video](recorded_20260314_215839.mp4)** (MP4, 2.89 MB)
+### Application in Action
+![Application Demo](demoVid.mp4)
+
+### Sample Output Recording
+![Sample Recording](recorded_20260314_235119.mp4)
 
 ---
 
