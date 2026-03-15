@@ -26,7 +26,7 @@ With this app, you can:
 - **Video Recording** with timestamped output filenames
 - **Recording Indicator** (`REC` + red circle) while recording
 - **FPS Adjustment** before recording starts
-- **Codec Switching** between available codecs
+- **Codec Switching** between available codecs, with matching output file extension
 - **Horizontal Flip** for mirror-like preview
 - **On-screen Status Overlay** for mode, flip, FPS, codec, effect, brightness, and contrast
 
@@ -131,9 +131,6 @@ Example:
 ```text
 recordings/recorded_20260315_153210.avi
 ```
-
-> Depending on your current implementation, the extension may be `.avi` or `.mp4`.
-
 ---
 
 ## Technical Notes
@@ -144,6 +141,7 @@ recordings/recorded_20260315_153210.avi
 - Some effects operate on grayscale internally and are converted back to BGR for display/recording
 - Background subtraction uses OpenCV's built-in subtractor
 - Frame difference compares the current frame with the previous one
+- The output file extension is matched to the selected codec for better compatibility
 
 ---
 
@@ -175,6 +173,7 @@ cap = cv.VideoCapture(1)
 ```python
 cap = cv.VideoCapture(0, cv.CAP_DSHOW)
 ```
+- 
 
 ### `python main.py` does not run correctly
 Use:
@@ -186,7 +185,8 @@ py main.py
 ### Output video is not created
 - Check that the selected codec is supported on your machine
 - Make sure the app has permission to write files
-- Try a different codec such as `XVID` or `MJPG`
+- The app automatically matches the file extension to the selected codec
+- Try a different codec such as `mp4v`, `XVID`, or `MJPG`
 
 ---
 
@@ -197,25 +197,9 @@ webcam-recorder/
 ├── main.py
 ├── README.md
 ├── recordings/
-│   └── recorded_<timestamp>.avi
-└── assets/
-    ├── screenshot.png
-    └── demo.gif
+    └── recorded_<timestamp>.avi
+
 ```
-
----
-
-## Future Improvements
-
-Possible next steps:
-- face detection
-- color tracking in HSV
-- contour detection
-- split-screen original vs processed
-- screenshot capture
-- save/load settings
-
----
 
 ## Author
 

@@ -17,14 +17,24 @@ CODECS = ["mp4v", "XVID", "MJPG"]
 # =========================
 def create_writer(frame_width, frame_height, fps, codec):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+
+    if codec.lower() == "mp4v":
+        ext = "mp4"
+    else:
+        ext = "avi"
+
     filename = os.path.join(
         OUTPUT_DIR,
-        f"recorded_{datetime.now().strftime('%Y%m%d_%H%M%S')}.avi"
+        f"recorded_{timestamp}.{ext}"
     )
+
     fourcc = cv.VideoWriter_fourcc(*codec)
     writer = cv.VideoWriter(filename, fourcc, fps, (frame_width, frame_height))
+
     if not writer.isOpened():
         return None, None
+
     return writer, filename
 
 
@@ -40,7 +50,13 @@ def draw_status_text(frame, is_recording, flip_enabled, fps, codec, effect, brig
     mode_text = "Mode: RECORD" if is_recording else "Mode: PREVIEW"
     flip_text = f"Flip: {'ON' if flip_enabled else 'OFF'}"
     fps_text = f"FPS: {fps}"
-    codec_text = f"Codec: {codec}"
+
+    if codec.lower() == "mp4v":
+        output_format = "MP4"
+    else:
+        output_format = "AVI"
+
+    codec_text = f"Codec: {codec} ({output_format})"
     effect_text = f"Effect: {effect}"
     bc_text = f"Brightness: {brightness}  Contrast: {contrast:.2f}"
 
@@ -213,7 +229,7 @@ def main():
     print("Controls:")
     print("  SPACE  - Start/Stop recording")
     print("  F      - Toggle horizontal flip")
-    print("  C      - Change codec")
+    print("  C      - Change codec/output format")
     print("  + / -  - Increase/Decrease FPS")
     print("  I / K  - Increase/Decrease brightness")
     print("  O / L  - Increase/Decrease contrast")
@@ -290,7 +306,8 @@ def main():
             if not is_recording:
                 codec_index = (codec_index + 1) % len(CODECS)
                 codec = CODECS[codec_index]
-                print(f"Codec changed to: {codec}")
+                output_format = "mp4" if codec.lower() == "mp4v" else "avi"
+                print(f"Codec changed to: {codec} -> .{output_format}")
             else:
                 print("Cannot change codec while recording.")
 
