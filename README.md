@@ -1,136 +1,223 @@
-# CamRec - WebCam Video Recorder
+# CamRec Vision Playground
 
-A lightweight, easy-to-use video recorder application built with Python and OpenCV. Capture your webcam stream in real-time with preview and recording modes.
+A lightweight webcam video recorder and computer vision playground built with Python and OpenCV. It supports live preview, recording, visual effects, brightness/contrast control, codec switching, and real-time experimentation with webcam frames.
 
 ---
 
-## Demo
+## Overview
 
-### Screenshot
-<p align="center">
-  <img src="vid%20recorder%20img.png" alt="Video Recorder Application" width="400">
-</p>
+This project started as a webcam recorder assignment and was extended into a small **computer vision sandbox** for learning image processing in real time.
 
-### Application in Action
-![Application Demo](demoVid.mp4)
-
-### Sample Output Recording
-![Sample Recording](recorded_20260314_235119.mp4)
+With this app, you can:
+- preview your webcam feed live
+- record processed video
+- switch between multiple visual effects
+- adjust brightness and contrast interactively
+- change FPS and codec before recording
+- experiment with frame-based computer vision ideas
 
 ---
 
 ## Features
 
-### Core Features (Required)
-- **Real-time Camera Display**: View live webcam stream using OpenCV's `cv.VideoCapture`
-- **Mode Toggle**: Switch between Preview and Record modes
-- **Video Recording**: Save webcam stream as video files with automatic timestamped filenames
-- **Recording Indicator**: Visual red circle indicator displayed during recording
-- **Customizable Settings**: Adjust FPS and select different video codecs (MP4V, XVID, MJPG) on the fly
-- **Keyboard Controls**: 
-  - `SPACE` - Toggle between Preview and Record modes
-  - `F` - Toggle horizontal flip
-  - `+` / `-` - Increase or decrease FPS (while in Preview)
-  - `C` - Cycle through available video codecs (while in Preview)
-  - `ESC` - Exit application
+### Core Features
+- **Real-time Camera Display** using OpenCV's `cv.VideoCapture`
+- **Preview / Record Mode Toggle** with keyboard input
+- **Video Recording** with timestamped output filenames
+- **Recording Indicator** (`REC` + red circle) while recording
+- **FPS Adjustment** before recording starts
+- **Codec Switching** between available codecs
+- **Horizontal Flip** for mirror-like preview
+- **On-screen Status Overlay** for mode, flip, FPS, codec, effect, brightness, and contrast
 
-### Additional Features
-- **Horizontal Flip**: Press `F` to flip the video horizontally (useful for mirror-like preview)
-- **Automatic Naming**: Video files are automatically named with timestamps (format: `recorded_YYYYMMDD_HHMMSS.mp4`)
-- **Codec Configuration**: The codec can be changed during preview mode.
-- **Status Display**: On-screen display shows current mode, flip status, FPS, and codec
+### Computer Vision Playground Features
+- **Normal mode**
+- **Negative effect**
+- **Grayscale effect**
+- **Canny edge detection**
+- **Blur effect**
+- **Frame difference** (current frame vs previous frame)
+- **Background subtraction**
+- **Cartoon effect**
+- **Pixelation effect**
+- **RGB glitch effect**
+- **Interactive brightness control**
+- **Interactive contrast control**
+
+---
 
 ## Requirements
 
-- Python 3.6+
-- OpenCV (cv2)
+- Python 3.10+
+- OpenCV
+- NumPy
+
+Install dependencies with:
+
+```bash
+py -m pip install opencv-python numpy
+```
+
+---
 
 ## Installation
 
-### 1. Install OpenCV
-
-```bash
-pip install opencv-python
-```
-
-### 2. Clone or Download This Repository
+Clone the repository:
 
 ```bash
 git clone https://github.com/Laura77-code/webcam-recorder.git
 cd webcam-recorder
 ```
 
-## Usage
+---
 
-Run the application:
+## Run the Project
+
+On Windows:
 
 ```bash
-python main.py
+py main.py
 ```
 
-### Keyboard Controls
+If `python main.py` does not work correctly on your machine, use `py main.py`.
+
+---
+
+## Keyboard Controls
 
 | Key | Action |
 |-----|--------|
-| `SPACE` | Toggle between Preview and Record modes |
-| `F` | Toggle horizontal flip on/off |
-| `+` / `=` | Increase recording FPS (Max 60) |
-| `-` / `_` | Decrease recording FPS (Min 1) |
-| `C` | Cycle through video codecs (MP4V, XVID, MJPG) |
-| `ESC` | Exit the application |
+| `SPACE` | Start / stop recording |
+| `ESC` | Exit application |
+| `F` | Toggle horizontal flip |
+| `C` | Change codec |
+| `+` / `=` | Increase FPS |
+| `-` | Decrease FPS |
+| `I` | Increase brightness |
+| `K` | Decrease brightness |
+| `O` | Increase contrast |
+| `L` | Decrease contrast |
+| `1` | Normal |
+| `2` | Negative |
+| `3` | Grayscale |
+| `4` | Canny edges |
+| `5` | Blur |
+| `6` | Frame difference |
+| `7` | Background subtraction |
+| `8` | Cartoon |
+| `9` | Pixelate |
+| `0` | RGB glitch |
 
-### How It Works
+---
 
-1. **Start the program** - Camera feed displays in a window
-2. **Preview Mode** - Default mode where you see the live camera feed
-3. **Record Mode** - Press `SPACE` to start recording (red REC indicator appears)
-4. **Stop Recording** - Press `SPACE` again to stop and save the video
-5. **Exit** - Press `ESC` to close the application
+## How It Works
+
+1. Run the program.
+2. The webcam feed opens in preview mode.
+3. Select an effect using the number keys.
+4. Adjust brightness and contrast if needed.
+5. Press `SPACE` to start recording.
+6. Press `SPACE` again to stop and save the video.
+7. Press `ESC` to exit.
+
+---
 
 ## Output
 
-Recorded video files are saved in the same directory with timestamped filenames:
-- Example: `recorded_20260314_143022.mp4`
+Recorded videos are saved automatically with timestamped filenames.
 
-## Technical Specifications
+Example:
 
-- **Video Codecs**: Supports MP4v, XVID, and MJPG
-- **Adjustable FPS**: Range from 1 to 60 FPS (Default: 20.0)
-- **Resolution**: Matches your camera's native resolution
-- **Output Filename**: Timestamped video files saved in the project directory
+```text
+recordings/recorded_20260315_153210.avi
+```
 
+> Depending on your current implementation, the extension may be `.avi` or `.mp4`.
+
+---
+
+## Technical Notes
+
+- Webcam frames are captured with `cv.VideoCapture(0)`
+- Recorded files are written using `cv.VideoWriter`
+- Effects are applied frame by frame in real time
+- Some effects operate on grayscale internally and are converted back to BGR for display/recording
+- Background subtraction uses OpenCV's built-in subtractor
+- Frame difference compares the current frame with the previous one
+
+---
+
+## Learning Goals
+
+This project is useful for practicing:
+- webcam input/output with OpenCV
+- image representation in NumPy
+- geometric transformations such as flip
+- photometric changes such as brightness and contrast
+- edge detection
+- temporal frame processing
+- simple computer vision experimentation in real time
+
+---
 
 ## Troubleshooting
 
-### Camera Not Opening
-- Ensure your webcam is connected and working
-- Check if another application is using your camera
-- Try a different camera index (modify `cv.VideoCapture(0)` to `cv.VideoCapture(1)`)
+### Camera does not open
+- Make sure no other application is using the webcam
+- Try changing the camera index in the code:
 
-### Video File Not Created
-- Check that you have write permissions in the application directory
-- Ensure sufficient disk space available
-- Try restarting the application
-
-### Poor Video Quality
-- Ensure adequate lighting for the camera
-- Some webcams require a moment to auto-focus
-- Adjust FPS in the code if needed (modify `fps` parameter in `create_writer()`)
-
-## Project Structure
-
+```python
+cap = cv.VideoCapture(1)
 ```
+
+- On some Windows systems this may help:
+
+```python
+cap = cv.VideoCapture(0, cv.CAP_DSHOW)
+```
+
+### `python main.py` does not run correctly
+Use:
+
+```bash
+py main.py
+```
+
+### Output video is not created
+- Check that the selected codec is supported on your machine
+- Make sure the app has permission to write files
+- Try a different codec such as `XVID` or `MJPG`
+
+---
+
+## Suggested Project Structure
+
+```text
 webcam-recorder/
-├── main.py          # Main application
-├── README.md       # This file
-└── recorded_<timestamp>.mp4  # Generated video files
+├── main.py
+├── README.md
+├── recordings/
+│   └── recorded_<timestamp>.avi
+└── assets/
+    ├── screenshot.png
+    └── demo.gif
 ```
 
-## License
+---
 
-This project is open source and available for educational purposes.
+## Future Improvements
+
+Possible next steps:
+- face detection
+- color tracking in HSV
+- contour detection
+- split-screen original vs processed
+- screenshot capture
+- save/load settings
+
+---
 
 ## Author
-Laura Morales - 24101204
-Created as a Computer Vision course assignment.
 
+Laura Morales - 24101204  
+Computer Vision course project.
